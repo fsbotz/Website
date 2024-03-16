@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firos</title>
+    <link rel="icon" href="https://i.postimg.cc/MG3yqpcP/logo.png" type="image/x-icon">
+    <!-- CSS link -->
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://gistcdn.githack.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+        :root {
+            --undelineCol: rgb(255, 0, 157);
+            --gilroy: 'Gilroy', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+            text-transform: capitalize;
+        }
+
+        *::-webkit-scrollbar {
+            display: none;
+        }
+
+        html,
+        body {
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #191919;
+            display: flex;
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 95vw;
+            height: 95%;
+            background-size: cover;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 7px;
+            background-position: right;
+            background-size: cover;
+            background-image: url('https://i.postimg.cc/Fs08R2Vg/new-vr-bg-pc.jpg');
+        }
+
+        .box {
+            position: absolute;
+            height: 100%;
+            width: 100vw;
+            border-radius: 7px;
+            background-size: cover;
+            background-position: right;
+            display: flex;
+            overflow: scroll;
+            scroll-snap-type: x mandatory;
+        }
+
+
+
+        .outer-box {
+            height: 100%;
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            scroll-snap-align: start;
+        }
+
+        .inner-box {
+            left: 0;
+            width: 100vw;
+            height: 50%;
+            padding-left: 5%;
+            flex: 0 0 100%;
+        }
+
+        .inner-box h1:first-child {
+            position: relative;
+            font-size: 60px;
+            font-weight: 400;
+            font-family: var(--gilroy);
+            opacity: 0;
+            animation: startPageAn 1s ease 0.4s forwards;
+        }
+
+        .inner-box h1:first-child::after {
+            opacity: 0;
+            animation: startPageAn 1s ease 0.8s forwards;
+            content: '';
+            position: absolute;
+            width: 125px;
+            height: 2px;
+            background-color: var(--undelineCol);
+            box-shadow: 2px 2px 30px 3px rgba(255, 0, 157, 0.523);
+            left: 4px;
+            bottom: 7px;
+            border-radius: 6px;
+            border-top-right-radius: 36px;
+            border-bottom-left-radius: 36px;
+        }
+
+        .inner-box p {
+            letter-spacing: 1px;
+            font-size: 13px;
+            margin: -5px 0px 0px 3px;
+            font-weight: 600;
+            animation: startPageAn 1s ease 1.2s forwards;
+            opacity: 0;
+        }
+
+        .inner-box p:nth-child(3) {
+            letter-spacing: 1px;
+            font-size: 10px;
+            margin: 10px 0px 0px 3px;
+            font-weight: 600;
+            width: 70vw;
+            animation: startPageAn 1s ease 1.6s forwards;
+            opacity: 0;
+        }
+
+        .inner-box h3 {
+            position: relative;
+            font-family: var(--gilroy);
+            font-weight: 600;
+            margin: 13px 0 0 3px;
+            animation: startPageAn 1s ease 2.0s forwards;
+            opacity: 0;
+        }
+
+        .inner-box h3::after {
+            content: "";
+            position: absolute;
+            width: 80px;
+            height: 2px;
+            background-color: var(--undelineCol);
+            box-shadow: 2px 2px 30px 3px rgba(255, 0, 157, 0.297);
+            left: 0;
+            bottom: -4px;
+            animation: startPageAn 1s ease 2.4s forwards;
+            opacity: 0;
+        }
+
+        .icons {
+            padding: 15px 30px 0px 3px;
+            gap: 7px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .icons button {
+            height: 36px;
+            width: 36px;
+            background: linear-gradient(to bottom, rgba(255, 0, 144, 0.42), rgba(0, 26, 255, 0.189));
+            box-shadow: 2px 4px 30px 12px rgba(255, 0, 144, 0.146);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 26%;
+            /* for animations using DOM */
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .icons button img {
+            height: 70%;
+            transition: all 0.4s ease;
+        }
+
+        .icons button:hover img {
+            scale: 1.1;
+        }
+
+        .icons button:hover {
+            scale: 1.1;
+            background: linear-gradient(to bottom, rgba(0, 26, 255, 0.189), rgba(255, 0, 144, 0.42));
+        }
+
+        /* section 2 */
+        .inner-box-2 {
+            min-height: 50%;
+            width: 100vw;
+            padding-left: 5%;
+            margin-bottom: 10px;
+            flex: 0 0 100%;
+            animation: fadeIn 1s ease 0.03s forwards;
+            animation-timeline: scroll(X);
+        }
+
+        .inner-box-2 h1 {
+            position: relative;
+            font-weight: 500;
+            font-family: var(--gilroy);
+        }
+
+        .inner-box-2 h1::after {
+            content: "";
+            width: 240px;
+            background-color: var(--undelineCol);
+            height: 2px;
+            position: absolute;
+            left: 0%;
+            bottom: -5px;
+        }
+
+        .channels {
+            margin-top: 10px;
+            width: 100vw;
+            height: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .channel-stats {
+            font-weight: 700;
+            font-size: 13px;
+            border-radius: 6px;
+            padding-left: 20px;
+            display: flex;
+            align-items: center;
+            height: 40px;
+            width: 80vw;
+            background: linear-gradient(to top right, rgba(255, 214, 248, 0.269) 10%, rgba(245, 245, 245, 0) 100%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        /* section 3  */
+        .inner-box-3 {
+            min-height: 50%;
+            width: 100vw;
+            padding-left: 5%;
+            margin-bottom: 10px;
+            flex: 0 0 100%;
+            animation: fadeIn 6s ease 0.03s;
+            animation-timeline: view(X);
+        }
+
+        .inner-box-3 h1 {
+            position: relative;
+            font-weight: 500;
+            font-family: var(--gilroy);
+        }
+
+        .inner-box-3 h1::after {
+            content: "";
+            width: 240px;
+            background-color: var(--undelineCol);
+            height: 2px;
+            position: absolute;
+            left: 0%;
+            bottom: -5px;
+        }
+
+        .socials {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 270px;
+            padding-top: 10px;
+            gap: 20px;
+        }
+
+        .socials button {
+            height: 45px;
+            width: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+
+        }
+
+        .socials button img {
+            transition: all 0.4s ease;
+            height: 85%;
+
+        }
+
+        .socials a {
+            opacity: 0;
+        }
+
+        .inner-box-3 p {
+            opacity: 0;
+        }
+
+        .socials button {
+            background: linear-gradient(to top, rgba(245, 122, 206, 0.272) 30%, rgba(161, 40, 117, 0.247) 100%);
+            border: none;
+            border-radius: 16%;
+        }
+
+        .socials button:hover {
+            background: linear-gradient(to top, rgba(255, 0, 0, 0.215) 30%, rgba(80, 19, 58, 0.941) 100%);
+
+        }
+
+        .inner-box-3 p {
+            padding-top: 20px;
+            width: 85vw;
+            font-size: 14px;
+            font-weight: 550;
+            font-family: var(--gilroy);
+        }
+
+        .scroll-line {
+            width: 0vw;
+            height: 3px;
+            background: linear-gradient(to right, rgba(255, 0, 0, 0.444) 30%, rgba(0, 229, 255, 0.235));
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            transition: all 5s ease;
+            animation: startpageSLineAn 1s ease 2.8s forwards;
+        }
+
+        .line {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(to right, rgba(255, 0, 60, 0.322), rgba(255, 0, 60, 0.468), rgba(255, 0, 60, 0.874)10%);
+            box-shadow: 2px 2px 30px 3px rgb(255, 0, 60);
+            width: 30vw;
+            left: 0%;
+            opacity: 0;
+            border-radius: 6px;
+            transition: all 1s ease 0s;
+            animation: startpageLineAn 1s ease 2.8s forwards;
+        }
+
+        .line::after {
+            content: '';
+            height: 4px;
+            width: 20px;
+            position: absolute;
+            background: linear-gradient(to right, rgba(255, 0, 60, 0.199), rgba(255, 0, 60, 0.874));
+            box-shadow: 2px 2px 30px 3px rgba(255, 0, 60, 0.874);
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border-bottom-left-radius: 100%;
+            border-top-left-radius: 100%;
+            top: -0.5px;
+            right: 0px;
+        }
+
+        .visitors {
+            height: 150px;
+            width: 220px;
+            background: linear-gradient(to top, rgba(255, 0, 157, 0.132) 50%, rgba(0, 149, 255, 0.187));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 6%;
+            opacity: 0;
+        }
+
+        .visitors b {
+            font-size: 50px;
+            font-weight: 700;
+            font-family: var(--gilroy);
+        }
+
+        .visitors span {
+            font-size: 16px;
+            font-weight: 700;
+            font-family: var(--gilroy);
+
+        }
+
+        @keyframes startPageAn {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes startpageSLineAn {
+            from {
+                width: 0vw;
+            }
+
+            to {
+                width: 90vw;
+            }
+        }
+
+        @keyframes startpageLineAn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                scale: 0.1;
+                opacity: 0;
+                transform: translateY(-300px);
+            }
+
+            60% {
+                scale: 1;
+                opacity: 1;
+                transform: translateY(0px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0px);
+
+            }
+        }
+
+        @media (max-width : 509px) {
+            #particles-js {
+
+                background-image: url('https://i.postimg.cc/JzPTHmDJ/new-vr-bg.jpg');
+            }
+
+            .box {
+                background-position: top;
+            }
+
+            .inner-box h1:first-child::after {
+
+                bottom: 12px;
+            }
+
+            .inner-box-2 h1::after {
+
+                bottom: -3px;
+            }
+
+            .inner-box-3 h1::after {
+
+                bottom: 2px;
+            }
+
+            .channel-stats h3 {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-js">
+        <div class="box">
+            <div class="outer-box">
+                <div class="inner-box">
+                    <h1 class="header">
+                        Firos
+                    </h1>
+                    <p>programmer | learner</p>
+                    <p>Jai Shree Krishna! I'm Firos, a dynamic developer specializing in Node.js, Python, HTML, CSS, and
+                        MongoDB.
+                        With a flair for creativity and precision, I turn ideas into seamless digital experiences.</p>
+                    <h3>My Tools</h3>
+                    <div class="icons">
+
+                        <button><img style="border-radius: 55px;" src="https://i.postimg.cc/KYS6QmcW/javascript.png"
+                                alt=""></button>
+                        <button><img src="/static/images/node-js.png" alt=""></button>
+                        <button><img src="https://i.postimg.cc/T1wFhwQK/python.png" alt=""></button>
+                        <button><img style="filter: invert(100);" src="https://i.postimg.cc/hjrRfNB5/express-js.png"
+                                alt=""></button>
+                        <button><img src="https://i.postimg.cc/1RvZPxMg/html.png" alt=""></button>
+                        <button><img src="https://i.postimg.cc/KjpX5L47/css.png" alt=""></button>
+                        <button><img style="filter: invert(100);" src="https://i.postimg.cc/65TxpH1M/github.png"
+                                alt=""></button>
+                        <button><img src="https://i.postimg.cc/Pr09rdDq/vs-code.png" alt=""></button>
+                        <button><img src="https://i.postimg.cc/mDRGZB09/chatgpt.png" alt=""></button>
+                        <button><img src="https://i.postimg.cc/PxdBsKwz/mongo-db.png" alt=""></button>
+                        <button><img src="https://i.postimg.cc/brBMnhF3/gbardai-logo.png" alt=""></button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="outer-box">
+                <div class="inner-box-2">
+                    <h1 class="header">Live Telegram Status</h1>
+                    <div class="channels">
+                    </div>
+
+                </div>
+            </div>
+            <div class="outer-box">
+                <div class="inner-box-3">
+                    <h1 class="header">Follow Me On</h1>
+                    <div class="socials">
+                        <a href="https://github.com/firossha321">
+                            <button><img src="https://i.postimg.cc/65TxpH1M/github.png" alt=""></button>
+                        </a>
+                        <a href="https://telegram.me/firossha">
+                            <button><img src="https://i.postimg.cc/mZXKJY2C/telegram.png" alt=""></button>
+                        </a>
+                        <a href="https://github.com/firossha321">
+                            <button><img src="https://i.postimg.cc/xdvW4Bc1/linkedin.png" alt=""></button>
+                        </a>
+
+                    </div>
+                    <p>
+                        Join me on a journey of innovation and design. 🌟 Explore the latest projects,
+                        behind-the-scenes,
+                        and tech wonders. Let's connect and create something extraordinary! 🚀💡<span
+                            style="color: rgb(0, 179, 255); font-weight: 700;">#CreativeExplorer</span>
+                    </p>
+                    <a style="text-decoration: none;" href="https://t.me/fsmoviebotz">
+                        <div class="visitors">
+                            <b data-purecounter-start="0" data-purecounter-end="41906"
+                                class="purecounter">41906</b>
+                            <span>Digital Footprints 👀</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="scroll-line">
+            <div class="line"></div>
+        </div>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
+<script src="https://biisal.github.io/Resources/particles.js"></script>
+<script src="https://biisal.github.io/Resources/particles-app.js"></script>
+
+<script>
+    const TELEGRAM_BOT_TOKEN = '7170199971:AAEjKXybSkF-XY0YoUIFtxHhFRtDa9MWQGk';
+    const CHANNEL_ID = ['-1002101057125', '-1002144625779', '-1002113738933', '-1001488344157'];
+    let channelData = [];
+    let channelHtml = document.querySelector(".channels")
+    let channelDataStr = ''
+    let loadingStr = ''
+    let time = 0
+    new PureCounter();
+    window.addEventListener('load', () => {
+        for (let i = 0; i < CHANNEL_ID.length; i++) {
+            loadingStr += "<div class='channel-stats'><h3>Loading data...</h3></div>"
+        }
+        channelHtml.innerHTML = loadingStr
+    })
+    let GetchannelData = async () => {
+        for (let i in CHANNEL_ID) {
+            try {
+                // Fetch channel information
+                let channelInfoData = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getChat?chat_id=${CHANNEL_ID[i]}`);
+                let channelInfo = await channelInfoData.json();
+
+                // Fetch member count
+                let memberCountData = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getChatMembersCount?chat_id=${CHANNEL_ID[i]}`);
+                let memberCount = await memberCountData.json();
+
+                // Assuming the result property contains the member count
+                let channelName = channelInfo.result.title;
+                let members = memberCount.result;
+
+                // Store the data
+                channelData[i] = { channelName, members };
+
+            } catch (error) {
+                console.log(`Error fetching data for channel ${CHANNEL_ID[i]}:`, error);
+            }
+        }
+    };
+
+
+    async function runGetchannelData() {
+        await GetchannelData()
+        for (let i = 0; i < CHANNEL_ID.length; i++) {
+            channelDataStr += `<div class="channel-stats">
+        <h3>${channelData[i].channelName} - <span>${channelData[i].members}</span> Members</h3>
+        </div>`
+        }
+        channelHtml.innerHTML = channelDataStr;
+        channelDataStr = ''
+    }
+    runGetchannelData()
+    setInterval(runGetchannelData, 30000)
+    let line = document.querySelector('.line')
+    let sline = document.querySelector('.scroll-line')
+    const mainContainer = document.querySelector('.box');
+    mainContainer.addEventListener('scroll', function () {
+        const scrollLeft = mainContainer.scrollLeft;
+        const boxWidth = window.innerWidth;
+
+        // Calculate the index of the currently visible box
+        const visibleBoxIndex = Math.round(scrollLeft / boxWidth);
+
+        // Log the message to the console
+        console.log('Viewing Box ' + (visibleBoxIndex + 1));
+        if (visibleBoxIndex + 1 === 1) {
+            line.style.left = '0%';
+            line.style.transform = 'translateX(0%)';
+            line.style.width = '30vw'
+
+
+        }
+        else if (visibleBoxIndex + 1 === 2) {
+            line.style.width = '60vw'
+        }
+        else if (visibleBoxIndex + 1 === 3) {
+            time = 0
+            document.querySelectorAll('.socials a').forEach((elm) => {
+                time += 0.2
+                elm.style.animation = `startPageAn 1s ease ${time}s forwards`
+            })
+            time += 0.2
+            document.querySelector('.inner-box-3 p').style.animation = `startPageAn 1s ease ${time}s forwards`
+            document.querySelector(".visitors").style.animation = `startPageAn 1s ease ${time}s forwards`
+            line.style.width = '90vw'
+
+        }
+    });
+
+    time = 2.4
+    document.querySelectorAll('.icons button').forEach((elm) => {
+        time += 0.2
+        elm.style.animation = `startPageAn 1s ease ${time}s forwards`
+    })
+
+
+</script>
+
+</html>
